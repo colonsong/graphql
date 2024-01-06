@@ -1,31 +1,33 @@
-// app/GraphQL/Query/UsersQuery.php
-
 <?php
 
-namespace App\GraphQL\Query;
+namespace App\GraphQL\Queries;
 
-use GraphQL;
+
 use App\Models\User;
-use GraphQL\Type\Definition\Type;
-use Rebing\GraphQL\Support\Query;
 
-class UsersQuery extends Query
+use Rebing\GraphQL\Support\Query;
+use GraphQL\Type\Definition\Type;
+use Illuminate\Support\Facades\Log;
+use Rebing\GraphQL\Support\Facades\GraphQL;
+
+class UserQuery extends Query
 {
     protected $attributes = [
-        'name' => 'users'
+        'name' => 'user'
     ];
 
-    public function type()
+    public function type(): Type
     {
-        return Type::listOf(GraphQL::type('users'));
+        return Type::listOf(GraphQL::type('User'));
     }
 
     /**
      * 接收参数的类型定义
      * @return array
      */
-    public function args()
+    public function args(): array
     {
+        Log::info(__LINE__);
         return [
             'id' => ['name' => 'id', 'type' => Type::int()],
             'email' => ['name' => 'email', 'type' => Type::string()],
@@ -43,6 +45,8 @@ class UsersQuery extends Query
     public function resolve($root, $args)
     {
         $user = new User;
+
+        Log::info(__LINE__);
 
         if(isset($args['limit']) ) {
             $user =  $user->limit($args['limit']);

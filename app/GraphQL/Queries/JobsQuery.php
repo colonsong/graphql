@@ -4,9 +4,9 @@
 
 namespace App\GraphQL\Query;
 
-use GraphQL;
-use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
+use GraphQL\Type\Definition\Type;
+use Rebing\GraphQL\Support\Facades\GraphQL;
 
 class JobsQuery extends Query
 {
@@ -14,12 +14,12 @@ class JobsQuery extends Query
         'name' => 'jobs'
     ];
 
-    public function type()
+    public function type():Type
     {
         return Type::listOf(GraphQL::type('jobs'));
     }
 
-    public function args()
+    public function args():array
     {
         return [
             'id' => ['name' => 'id', 'type' => Type::int()],
