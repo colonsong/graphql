@@ -76,6 +76,7 @@ return [
         'default' => [
             'query' => [
                 App\GraphQL\Queries\UserQuery::class,
+                App\GraphQL\Queries\AvailableRoomsQuery::class,
             ],
             'mutation' => [
 
@@ -83,7 +84,7 @@ return [
             // The types only available in this schema
             'types' => [
                 App\GraphQL\Types\UserType::class,
-
+                App\GraphQL\Types\AvailableRoomsType::class,
             ],
 
             // Laravel HTTP middleware

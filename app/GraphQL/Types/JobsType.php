@@ -1,7 +1,7 @@
 // app/GraphQL/Type/JobsType.php
 
 <?php
-namespace App\GraphQL\Type;
+namespace App\GraphQL\Types;
 
 use App\Models\Job;
 use GraphQL\Type\Definition\Type;
